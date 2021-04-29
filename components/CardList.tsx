@@ -3,8 +3,28 @@ import React from 'react';
 import Cardtem from './CardItem';
 import SearchNone from './SearchNone';
 
-const CardList = ({ cards, onClearSubmit }) => {
-    let itemList = <SearchNone />
+interface CardListProps {
+    cards: {
+        id: number;
+        data: {
+            name: string;
+            weather: {
+                main: string;
+                description: string;
+                icon: string;
+            }[];
+            main: {
+                temp: number;
+            }
+        };
+        time: string;
+    }[];    //cards = [{1,"sdsad"}, {...}]; string[] >> ["cx", "sdasd"]
+    onClearSubmit: () => void;
+}
+
+const CardList: React.FC<CardListProps> = ({ cards, onClearSubmit }) => {
+    let itemList: JSX.Element | JSX.Element[] = <SearchNone />
+
     if(cards.length > 0){
         itemList = cards.map( card => {
             return <Cardtem key={card.id} card={card} />

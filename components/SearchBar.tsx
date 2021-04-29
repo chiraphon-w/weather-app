@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 
-const SearchBar = ({ onCitySearch }) => {
+interface SearchBarProps {
+    onCitySearch: (city: string) => void;
+  }
+
+const SearchBar: React.FC<SearchBarProps> = ({ onCitySearch }) => {
     const [city, setCity] = useState("");
 
-    const onSearchSubmit = city => {
+
+    
+    const onSearchSubmit = (city: string ) => {
         onCitySearch(city);
         setCity('');
     }
