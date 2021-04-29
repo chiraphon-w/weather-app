@@ -5,24 +5,20 @@ import CardList from '../components/CardList';
 import openweather from '../pages/api/openweather';
 import Swal from 'sweetalert2';
 
-export default function Home() {
-  const [cards, setCards] = useState<
-    {
-      id: number;
-      time: string;
-      data: any;
-    }[]
-  >([]);
-  const [data, setData] = useState({});
-  const [city, setCity] = useState('');
+import { Card, WeatherData } from '../components/types';
 
+export default function Home() {
+  const [cards, setCards] = useState<Card[]>([]);
+  const [data, setData] = useState<WeatherData | undefined>();
+  const [city, setCity] = useState('');
+  
   const onCitySearch = async (city: string) => {
     // set current searching term
     setCity(city);
 
     // call api
     try {
-      const res = await openweather.get('/data/2.5/weather', {
+      const res = await openweather.get<WeatherData>('/data/2.5/weather', {
         params: {
           q: city,
           units: 'metric',

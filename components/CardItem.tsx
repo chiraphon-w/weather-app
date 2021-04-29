@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Card } from './types';
 
 interface CardItemProps {
-  card: {
-    id: number;
-    data: {
-      name: string;
-      weather: {
-        main: string;
-        description: string;
-        icon: string;
-      }[];
-      main: {
-        temp: number;
-      };
-    };
-    time: string;
-  };
+  card: Card;
 }
 
 const Cardtem: React.FC<CardItemProps> = ({ card }) => {
-  console.log('card data: ', card.data);
-  const data = card.data;
+  const { data } = card;
+  console.log('card data: ', data);
 
   return (
     <div className='ml-6 mr-6 mt-3 mb-2'>
